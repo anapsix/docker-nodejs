@@ -24,3 +24,8 @@ It's assumed that you have working `./package.json` with depencencies and proper
 
 > You should customize your _EXPOSE []_ according to `server.js`.
 > You can also add _ENTRYPOINT_, override _CMD_ and add dependencies as needed.
+
+To install additional packages, place one package name per line into `./deps.apk`.
+For custom actions, create deps.sh executable script.
+
+> For list of available packages see [http://pkgs.alpinelinux.org/packages](http://pkgs.alpinelinux.org/packages)
