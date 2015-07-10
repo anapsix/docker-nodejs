@@ -6,11 +6,21 @@ AlpineLinux-base Docker image with NodeJS
 
 ## Usage
 
-just-in-time:
+It's assumed that you have working `./package.json` with depencencies and proper `start` script, so that `npm install` and `npm start` works.
 
-    docker run -it --rm --name my-node-project -p 5080:5080 -v $(pwd):/app -w /app anapsix/nodejs
+- without building an image:
 
-onbuild:
+        docker run -it --rm \
+          --name my-node-project \
+          -p 5080:5080 \
+          -v $(pwd):/app \
+          anapsix/nodejs
 
-    # Dockerfile
+- building from `onbuild` tag:
 
+        # Dockerfile
+        FROM anapsix/nodejs:onbuild
+        EXPOSE 5080
+
+> You should customize your _EXPOSE []_ according to `server.js`.
+> You can also add _ENTRYPOINT_, override _CMD_ and add dependencies as needed.
