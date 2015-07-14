@@ -2,4 +2,6 @@ FROM alpine:latest
 MAINTAINER Anastas Dancha <anapsix@random.io>
 RUN apk upgrade --update && apk add nodejs
 WORKDIR /app
-CMD npm install && npm start
+ADD install_deps.sh /install_deps.sh
+ADD docker-entrypoint.sh /entrypoint.sh
+CMD ["/entrypoint.sh"]

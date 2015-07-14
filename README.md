@@ -6,7 +6,7 @@ AlpineLinux-base Docker image with NodeJS
 
 ## Usage
 
-It's assumed that you have working `./package.json` with depencencies and proper `start` script, so that `npm install` and `npm start` works.
+It's assumed that you have working `./package.json` with resolvable dependencies and proper `start` script, so that `npm install` and `npm start` works.
 
 - without building an image:
 
@@ -25,7 +25,11 @@ It's assumed that you have working `./package.json` with depencencies and proper
 > You should customize your _EXPOSE []_ according to `server.js`.
 > You can also add _ENTRYPOINT_, override _CMD_ and add dependencies as needed.
 
-To install additional packages, place one package name per line into `./deps.apk`.
-For custom actions, create deps.sh executable script.
+To install additional [AlpineLinux] packages, place one package name per line into `./deps.apk`.  
+For custom actions, create deps.sh executable script.  
+Both files are checked for in `latest` as well as `onbuild` images. The only difference, is that:
+- `latest` tries to resolve dependencies during `docker run`, before running `npm install && npm start` (assuming you did not override the `CMD`)
+- `onbuild` resolves dependencies during `docker build` and the only command executed during `docker run` is `npm start` (assuming you did not override the `CMD`) 
+
 
 > For list of available packages see [http://pkgs.alpinelinux.org/packages](http://pkgs.alpinelinux.org/packages)
