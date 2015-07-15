@@ -16,20 +16,26 @@ It's assumed that you have working `./package.json` with resolvable dependencies
           -v $(pwd):/app \
           anapsix/nodejs
 
+> You should customize your _EXPOSE []_ according to `server.js`.  
+> You can also add _ENTRYPOINT_, override _CMD_ and add dependencies as needed.
+
 - building from `onbuild` tag:
 
         # Dockerfile
         FROM anapsix/nodejs:onbuild
         EXPOSE 5080
 
-> You should customize your _EXPOSE []_ according to `server.js`.
-> You can also add _ENTRYPOINT_, override _CMD_ and add dependencies as needed.
+> To permanently install additional [AlpineLinux packages](http://pkgs.alpinelinux.org/packages), place one package name per line into `./deps.apk`.
+> Applies to `latest` as well as `onbuild`.  
+> For custom actions, create deps.sh executable script.  
+> For **build-time only** dependencies (e.g. _bson_ needs `make` and `g++` to compile c++ extention), use `./deps_build.apk`.
+> All packages will be installed before `nmp install` and removed immediately after, for the sake of making resulting image smaller.
+> Applies to `latest` as well as `onbuild`, except that `latest` will not cleanup the build-time dependencies.
 
-To install additional [AlpineLinux] packages, place one package name per line into `./deps.apk`.  
-For custom actions, create deps.sh executable script.  
-Both files are checked for in `latest` as well as `onbuild` images. The only difference, is that:
+NOTE:
 - `latest` tries to resolve dependencies during `docker run`, before running `npm install && npm start` (assuming you did not override the `CMD`)
-- `onbuild` resolves dependencies during `docker build` and the only command executed during `docker run` is `npm start` (assuming you did not override the `CMD`) 
+- `onbuild` resolves dependencies during `docker build`, cleans up build-time dependencies and the only command executed during `docker run` is `npm start` (assuming you did not override the `CMD`) 
 
+## TODO
 
-> For list of available packages see [http://pkgs.alpinelinux.org/packages](http://pkgs.alpinelinux.org/packages)
+Add `./examples`
