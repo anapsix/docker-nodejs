@@ -28,8 +28,8 @@ It's assumed that you have working `./package.json` with resolvable dependencies
 > To permanently install additional [AlpineLinux packages](http://pkgs.alpinelinux.org/packages), place one package name per line into `./deps.apk`.
 > Applies to `latest` as well as `onbuild`.  
 > For custom actions, create deps.sh executable script.  
-> For **build-time only** dependencies (e.g. _bson_ needs `make` and `g++` to compile c++ extention), use `./deps_build.apk`.
-> All packages will be installed before `nmp install` and removed immediately after, for the sake of making resulting image smaller.
+> For **build-time only** dependencies (e.g. `bson` npm package requires `make` and `g++` to compile c++ extention), use `./deps_build.apk`.
+> All packages will be installed before `npm install` and removed immediately after, for the sake of making resulting image smaller.
 > Applies to `latest` as well as `onbuild`, except that `latest` will not cleanup the build-time dependencies.
 
 NOTE:
