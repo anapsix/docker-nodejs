@@ -4,6 +4,8 @@ AlpineLinux-base Docker image with NodeJS
 
 [![](https://badge.imagelayers.io/anapsix/nodejs:latest.svg)](https://imagelayers.io/?images=anapsix/nodejs:latest)
 
+[![Build Status](https://travis-ci.org/anapsix/docker-nodejs.svg)](https://travis-ci.org/anapsix/docker-nodejs)
+
 ## Usage
 
 It's assumed that you have working `./package.json` with resolvable dependencies and proper `start` script, so that `npm install` and `npm start` works.

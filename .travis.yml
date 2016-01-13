@@ -1,0 +1,13 @@
+#sudo: required
+
+language: c
+
+services:
+  - docker
+
+before_install:
+  - docker info
+  - docker build -t anapsix/nodejs .
+
+script:
+  - docker run -it --rm anapsix/nodejs node -e "console.log(require('crypto').createHash('md5').update('test').digest('hex'))" | grep -q 098f6bcd4621d373cade4e832627b4f6
