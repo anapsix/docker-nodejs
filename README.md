@@ -1,6 +1,6 @@
 # NodeJS in a box
 
-AlpineLinux-base Docker image with NodeJS
+AlpineLinux-base Docker image with NodeJS 4.3.0+
 
 [![](https://badge.imagelayers.io/anapsix/nodejs:latest.svg)](https://imagelayers.io/?images=anapsix/nodejs:latest)
 
