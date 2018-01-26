@@ -1,6 +1,7 @@
-FROM alpine:3.3
+FROM alpine:3.6
 MAINTAINER Anastas Dancha <anapsix@random.io>
-RUN apk upgrade --update && apk add nodejs
+RUN apk -U upgrade \
+ && apk add nodejs
 WORKDIR /app
 COPY *.sh /
 CMD ["/entrypoint.sh"]
